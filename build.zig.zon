@@ -1,0 +1,19 @@
+.{
+    .name = "wgl",
+    .version = "0.1.0",
+    .dependencies = .{
+        .lime = .{
+            .url = "https://github.com/bitlaab-bolt/lime/archive/refs/tags/v0.1.0.zip",
+            .hash = "1220ae1ceccd1c94bba1a165e1e256238849a03a6c8e4424944a4688eb0f6cb5df91",
+        },
+    },
+    .paths = .{
+        "libs",
+        "src",
+        "build.zig",
+        "build.zig.zon",
+        "CHANGELOG.md",
+        "LICENSE",
+        "README.md",
+    },
+}

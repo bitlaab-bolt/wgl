@@ -1,0 +1,3 @@
+Static Library Version
+
+glfw3.a     [v3.4.0]
