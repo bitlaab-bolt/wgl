@@ -65,6 +65,8 @@ pub fn build(b: *std.Build) void {
     const lime = b.dependency("lime", .{});
     exe.root_module.addImport("lime", lime.module("lime"));
 
+    pkg.addImport("lime", lime.module("lime"));
+
     b.installArtifact(exe);
 
     const run_step = b.step("run", "Run the app");
