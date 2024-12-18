@@ -64,7 +64,6 @@ pub fn build(b: *std.Build) void {
     // Adding External Dependency
     const lime = b.dependency("lime", .{});
     exe.root_module.addImport("lime", lime.module("lime"));
-    pkg.addImport("lime", lime.module("lime"));
 
     b.installArtifact(exe);
 

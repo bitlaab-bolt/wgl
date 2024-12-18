@@ -1,2 +1,2 @@
-pub const wgl = @import("./core/wgl.zig");
+pub const Wgl = @import("./core/wgl.zig");
 
