@@ -45,9 +45,9 @@ pub fn build(b: *std.Build) void {
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .aarch64 => {
                     pkg.addObjectFile(b.path("libs/macOS/libglfw3.a"));
-                    exe.linkFramework("WebKit");
-                    exe.linkFramework("IOKit");
-                    exe.linkFramework("Cocoa");
+                    pkg.linkFramework("WebKit");
+                    pkg.linkFramework("IOKit");
+                    pkg.linkFramework("Cocoa");
 
                     exe.addObjectFile(b.path("libs/macOS/libglfw3.a"));
                     exe.linkFramework("WebKit");
