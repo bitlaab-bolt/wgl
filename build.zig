@@ -5,7 +5,7 @@ const builtin = @import("builtin");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{
-        .preferred_optimize_mode = .Debug
+        .preferred_optimize_mode = .ReleaseSafe
     });
 
     // Exposing as a dependency for other projects
@@ -30,7 +30,7 @@ pub fn build(b: *std.Build) void {
     // Adding cross-platform dependency
     switch (target.query.os_tag orelse builtin.os.tag) {
         .windows => {
-            // exe.linkLibC();
+            exe.linkLibC();
 
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .x86_64 => {
@@ -45,12 +45,10 @@ pub fn build(b: *std.Build) void {
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .aarch64 => {
                     pkg.addObjectFile(b.path("libs/macOS/libglfw3.a"));
-                    pkg.linkFramework("WebKit", .{});
                     pkg.linkFramework("IOKit", .{});
                     pkg.linkFramework("Cocoa", .{});
 
                     exe.addObjectFile(b.path("libs/macOS/libglfw3.a"));
-                    exe.linkFramework("WebKit");
                     exe.linkFramework("IOKit");
                     exe.linkFramework("Cocoa");
                 },
@@ -63,9 +61,8 @@ pub fn build(b: *std.Build) void {
 
     // Adding External Dependency
     const lime = b.dependency("lime", .{});
-    exe.root_module.addImport("lime", lime.module("lime"));
-
     pkg.addImport("lime", lime.module("lime"));
+    exe.root_module.addImport("lime", lime.module("lime"));
 
     b.installArtifact(exe);
 
