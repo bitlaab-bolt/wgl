@@ -35,8 +35,10 @@ pub fn build(b: *std.Build) void {
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .x86_64 => {
                     pkg.addObjectFile(b.path("libs/windows/libglfw3.a"));
+                    pkg.linkSystemLibrary("gdi32", .{});
 
                     exe.addObjectFile(b.path("libs/windows/libglfw3.a"));
+                    exe.linkSystemLibrary("gdi32");
                 },
                 else => @panic("Unsupported architecture!")
             }
