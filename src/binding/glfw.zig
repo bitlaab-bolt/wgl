@@ -8,7 +8,6 @@ const glfw = @cImport({
         else => @panic("Codebase is not tailored for this platform!")
     }
 
- @cDefine("GLFW_EXPOSE_NATIVE_WIN32", "1");
     @cDefine("GLFWAPI", "__attribute__((visibility(\"default\")))");
     @cInclude("glfw3.h");
     @cInclude("glfw3native.h");
