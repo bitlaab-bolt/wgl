@@ -96,5 +96,8 @@ pub const macOS = struct {
 
 // # Platform Specific Functionality
 pub const windows = struct {
-    // TODO
+    /// # Gets `NSWindow` of the Specified Window
+    pub fn getNativeWindow(win: ?*glfw.Window) glfw.HWND {
+        return glfw.getWin32Window(win);
+    }
 };

@@ -8,7 +8,7 @@ const glfw = @cImport({
         else => @panic("Codebase is not tailored for this platform!")
     }
 
-    @cDefine("GLFW_EXPOSE_NATIVE_COCOA", "1")
+ @cDefine("GLFW_EXPOSE_NATIVE_WIN32", "1");
     @cDefine("GLFWAPI", "__attribute__((visibility(\"default\")))");
     @cInclude("glfw3.h");
     @cInclude("glfw3native.h");
@@ -112,7 +112,13 @@ pub fn getCocoaWindow(win: ?*Window) NSWindow {
     return @ptrCast(id);
 }
 
+pub const struct_HWND__ = extern struct {
+    unused: c_int = @import("std").mem.zeroes(c_int),
+};
+pub const HWND = [*c]struct_HWND__;
+
 /// # Gets `HWND` of the Specified Window
-pub fn getWin32Window(win: ?*Window) void {
+pub fn getWin32Window(win: ?*Window) HWND {
     const x = glfw.glfwGetWin32Window(@ptrCast(win));
+    return @ptrCast(x);
 }

@@ -14,7 +14,9 @@ pub fn main() !void {
     defer win.destroy();
 
     win.setSizeLimits(.{.min_width = 720, .min_height = 360});
-    try win.setWindowIcon(heap, "./tests/bitlaab.png");
+    try win.setWindowIcon(heap, "./tests/icon.png");
+
+    std.debug.print("{any}\n", .{wgl.windows.getNativeWindow(win.instance)});
 
     while (!win.shouldClose()) {
         // Render here
