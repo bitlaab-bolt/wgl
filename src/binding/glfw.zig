@@ -8,6 +8,7 @@ const glfw = @cImport({
         else => @panic("Codebase is not tailored for this platform!")
     }
 
+    @cDefine("GLFW_EXPOSE_NATIVE_COCOA", "1")
     @cDefine("GLFWAPI", "__attribute__((visibility(\"default\")))");
     @cInclude("glfw3.h");
     @cInclude("glfw3native.h");
@@ -109,4 +110,9 @@ pub const NSWindow = [*c]struct_objc_object;
 pub fn getCocoaWindow(win: ?*Window) NSWindow {
     const id = glfw.glfwGetCocoaWindow(@ptrCast(win));
     return @ptrCast(id);
+}
+
+/// # Gets `HWND` of the Specified Window
+pub fn getWin32Window(win: ?*Window) void {
+    const x = glfw.glfwGetWin32Window(@ptrCast(win));
 }
