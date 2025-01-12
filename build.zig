@@ -37,7 +37,7 @@ pub fn build(b: *std.Build) void {
                     pkg.addObjectFile(b.path("libs/windows/libglfw3.a"));
                     pkg.linkSystemLibrary("gdi32", .{});
 
-                    exe.addObjectFile(b.path("libs/windows/libglfw3.a"));
+                    exe.addObjectFile(b.path("libs/windows/glfw3dll.lib"));
                     exe.linkSystemLibrary("gdi32");
                 },
                 else => @panic("Unsupported architecture!")
