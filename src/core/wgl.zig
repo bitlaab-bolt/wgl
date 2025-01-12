@@ -1,7 +1,7 @@
 const std = @import("std");
 const Allocator = std.mem.Allocator;
 
-const lime = @import("lime");
+// const lime = @import("lime");
 const glfw = @import("../binding/glfw.zig");
 
 
@@ -38,38 +38,41 @@ pub const Image = glfw.Image;
 
 /// Does not shows on macos
 pub fn setWindowIcon(self: *Self, heap: Allocator, path: []const u8) !void {
-    const image = try lime.Png.loadImage(heap, path);
-    switch(image) {
-        .err => |v| {
-            std.log.err("Error: {s}\n", .{v});
-            return Error.FailedToLoadImage;
-        },
-        .data => |v| {
-            errdefer lime.Png.freeImage(heap, v);
-            const ihdr = try lime.Png.loadImageHeader(path);
-            switch (ihdr) {
-                .err => |w| {
-                    std.log.err("Error: {s}\n", .{w});
-                    return Error.FailedToLoadImage;
-                },
-                .ihdr => |w| {
-                    var img: [1]Image = undefined;
-                    img[0] = Image {
-                        .width = @intCast(w.width),
-                        .height = @intCast(w.height),
-                        .pixels = @constCast(v.ptr)
-                    };
+    _ = self;
+    _ = heap;
+    _ = path;
+    // const image = try lime.Png.loadImage(heap, path);
+    // switch(image) {
+    //     .err => |v| {
+    //         std.log.err("Error: {s}\n", .{v});
+    //         return Error.FailedToLoadImage;
+    //     },
+    //     .data => |v| {
+    //         errdefer lime.Png.freeImage(heap, v);
+    //         const ihdr = try lime.Png.loadImageHeader(path);
+    //         switch (ihdr) {
+    //             .err => |w| {
+    //                 std.log.err("Error: {s}\n", .{w});
+    //                 return Error.FailedToLoadImage;
+    //             },
+    //             .ihdr => |w| {
+    //                 var img: [1]Image = undefined;
+    //                 img[0] = Image {
+    //                     .width = @intCast(w.width),
+    //                     .height = @intCast(w.height),
+    //                     .pixels = @constCast(v.ptr)
+    //                 };
 
-                    const count = v.len;
-                    glfw.setWindowIcon(self.instance, @intCast(count), &img);
-                },
-                .data => unreachable
-            }
-        },
-        .ihdr => unreachable
-    }
+    //                 const count = v.len;
+    //                 glfw.setWindowIcon(self.instance, @intCast(count), &img);
+    //             },
+    //             .data => unreachable
+    //         }
+    //     },
+    //     .ihdr => unreachable
+    // }
 
-    lime.Png.freeImage(heap, image.data);
+    // lime.Png.freeImage(heap, image.data);
 }
 
 /// # Checks the Close Flag of the Specified Window
