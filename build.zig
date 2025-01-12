@@ -34,7 +34,7 @@ pub fn build(b: *std.Build) void {
 
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .x86_64 => {
-                    pkg.addObjectFile(b.path("libs/windows/libglfw3.a"));
+                    pkg.addObjectFile(b.path("libs/windows/glfw3dll.lib"));
                     pkg.linkSystemLibrary("gdi32", .{});
 
                     exe.addObjectFile(b.path("libs/windows/glfw3dll.lib"));
