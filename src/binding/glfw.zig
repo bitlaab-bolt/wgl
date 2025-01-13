@@ -100,7 +100,6 @@ pub fn pollEvents() void {
     glfw.glfwPollEvents();
 }
 
-
 const struct_objc_class = opaque {};
 const Class = ?*struct_objc_class;
 const struct_objc_object = extern struct {
@@ -121,6 +120,6 @@ pub const HWND = [*c]struct_HWND__;
 
 /// # Gets `HWND` of the Specified Window
 pub fn getWin32Window(win: ?*Window) HWND {
-    const x = glfw.glfwGetWin32Window(@ptrCast(win));
-    return @ptrCast(x);
+    const id = glfw.glfwGetWin32Window(@ptrCast(win));
+    return @ptrCast(id);
 }

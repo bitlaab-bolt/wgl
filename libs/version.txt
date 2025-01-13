@@ -1,3 +1,8 @@
-Static Library Version
+Static Library Version on MacOS
 
-glfw3.a     [v3.4.0]
+glfw3.a          [v3.4.0]
+
+
+Shared Library Version on Windows
+
+glfw3dll.lib     [v3.4.0]
