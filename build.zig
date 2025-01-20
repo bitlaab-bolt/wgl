@@ -45,6 +45,7 @@ pub fn build(b: *std.Build) void {
         },
         .macos => {
             exe.linkLibCpp();
+
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .aarch64 => {
                     pkg.addObjectFile(b.path("libs/macOS/libglfw3.a"));
@@ -61,7 +62,6 @@ pub fn build(b: *std.Build) void {
         else => @panic("Codebase is not tailored for this platform!")
     }
 
-
     // Adding External Dependency
     // const lime = b.dependency("lime", .{});
     // pkg.addImport("lime", lime.module("lime"));
@@ -69,7 +69,6 @@ pub fn build(b: *std.Build) void {
 
     const wevi = b.dependency("wevi", .{});
     exe.root_module.addImport("wevi", wevi.module("wevi"));
-
 
     b.installArtifact(exe);
 

@@ -89,6 +89,22 @@ pub fn swapBuffers(self: *Self) void {
     glfw.swapBuffers(self.instance);
 }
 
+pub fn makeContextCurrent(self: *Self) void {
+    glfw.makeContextCurrent(self.instance);
+}
+
+pub fn swapInterval(count: i32) void {
+    glfw.swapInterval(count);
+}
+
+pub fn x() void {
+    glfw.x();
+}
+
+pub fn errorCallback(@"fn": glfw.ErrorCallBack) void {
+    _ = glfw.errorCallback(@"fn");
+}
+
 /// # Platform Specific Functionality
 pub const macOS = struct {
     /// # Gets `NSWindow` of the Specified Window

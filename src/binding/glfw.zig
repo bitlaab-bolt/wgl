@@ -22,6 +22,8 @@ const Error = error { InitializationFailed };
 pub const Window = opaque {};
 const Monitor = opaque {};
 
+pub const ErrorCallBack = glfw.GLFWerrorfun;
+
 /// # Initializes the GLFW library
 pub fn init() Error!void {
     const rv = glfw.glfwInit();
@@ -90,6 +92,10 @@ pub fn destroyWindow(win: ?*Window) void {
     glfw.glfwDestroyWindow(@ptrCast(win));
 }
 
+pub fn makeContextCurrent(win: ?*Window) void {
+    glfw.glfwMakeContextCurrent(@ptrCast(win));
+}
+
 /// # Swaps the Front and Back Buffers of the Specified Window
 pub fn swapBuffers(win: ?*Window) void {
     glfw.glfwSwapBuffers(@ptrCast(win));
@@ -98,6 +104,18 @@ pub fn swapBuffers(win: ?*Window) void {
 /// # Processes All Pending Events in the Event Queue
 pub fn pollEvents() void {
     glfw.glfwPollEvents();
+}
+
+pub fn swapInterval(count: i32) void {
+    glfw.glfwSwapInterval(@intCast(count));
+}
+
+pub fn x() void {
+    glfw.glfwWindowHint(glfw.GLFW_CLIENT_API, glfw.GLFW_NO_API);
+}
+
+pub fn errorCallback(@"fn": ErrorCallBack) ErrorCallBack {
+    return glfw.glfwSetErrorCallback(@"fn");
 }
 
 const struct_objc_class = opaque {};
