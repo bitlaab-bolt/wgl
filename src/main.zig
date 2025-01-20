@@ -1,8 +1,6 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
-const wevi = @import("wevi").Wevi;
-
 const wgl = @import("./core/wgl.zig");
 
 
@@ -13,22 +11,16 @@ pub fn main() !void {
 
     try wgl.init();
     defer wgl.deinit();
-    wgl.x();
-    wgl.swapInterval(1);
 
-    wgl.errorCallback(errorInfo);
+    wgl.swapInterval(10);
+    wgl.errorCallback(printErrorInfo);
 
 
-    var win = try wgl.createWindow(.{.width = 720, .height = 460});
+    var win = try wgl.createWindow(.{.width = 980, .height = 560});
     defer win.destroy();
 
-    // win.makeContextCurrent();
-
+    win.makeContextCurrent();
     win.setSizeLimits(.{.min_width = 720, .min_height = 360});
-    // try win.setWindowIcon(heap, "./tests/icon.png");
-
-   
-    
 
     // Native window handler
     const native_win: *anyopaque = switch (builtin.os.tag) {
@@ -36,27 +28,18 @@ pub fn main() !void {
         .macos => @ptrCast(wgl.macOS.getNativeWindow(win.instance)),
         else => unreachable
     };
+    _ = native_win;
 
-
-
-
-    var view = try wevi.create(.Off, native_win);
-    // try view.setHtml("<h1 style=\"color: red;\">Hello, world!</h1>");
-    // try view.title("fool");
-    try view.navigate("https://example.com");
-    // try view.run();
-    // try view.destroy();
-
-    std.debug.print("{any}\n", .{native_win});
 
     while (!win.shouldClose()) {
-        // Render here
-        // win.swapBuffers();
+        // Game loop code here...
+
+        win.swapBuffers();
         wgl.pullEvents();
     }
 }
 
-fn errorInfo(code: c_int, message: [*c]const u8) callconv(.c) void {
+fn printErrorInfo(code: c_int, message: [*c]const u8) callconv(.c) void {
     std.debug.print("Error code: {d}\n", .{code});
     std.debug.print("Error Message: {s}\n", .{message});
 }

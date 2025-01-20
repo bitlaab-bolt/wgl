@@ -62,14 +62,6 @@ pub fn build(b: *std.Build) void {
         else => @panic("Codebase is not tailored for this platform!")
     }
 
-    // Adding External Dependency
-    // const lime = b.dependency("lime", .{});
-    // pkg.addImport("lime", lime.module("lime"));
-    // exe.root_module.addImport("lime", lime.module("lime"));
-
-    const wevi = b.dependency("wevi", .{});
-    exe.root_module.addImport("wevi", wevi.module("wevi"));
-
     b.installArtifact(exe);
 
     const run_step = b.step("run", "Run the app");

@@ -1,13 +1,9 @@
 .{
     .name = "wgl",
     .version = "0.1.0",
-    .dependencies = .{
-        .wevi = .{
-            .url = "https://github.com/bitlaab-bolt/wevi/archive/refs/tags/v0.1.0.zip",
-            .hash = "1220fa996583c8e89f87bc5ef363a1d8f4591c6a7cf6ea8464f3ec65b4ce9a8e1bac",
-        },
-    },
+    .dependencies = .{},
     .paths = .{
+        "docs",
         "libs",
         "src",
         "build.zig",

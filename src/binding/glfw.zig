@@ -19,21 +19,17 @@ const glfw = @cImport({
 
 const Error = error { InitializationFailed };
 
+pub const ErrorCallBack = glfw.GLFWerrorfun;
+
 pub const Window = opaque {};
 const Monitor = opaque {};
 
-pub const ErrorCallBack = glfw.GLFWerrorfun;
-
-/// # Initializes the GLFW library
 pub fn init() Error!void {
     const rv = glfw.glfwInit();
     if (rv != 1) return Error.InitializationFailed;
 }
 
-/// # Destroys GLFW library
-pub fn terminate() void {
-    glfw.glfwTerminate();
-}
+pub fn terminate() void { glfw.glfwTerminate(); }
 
 pub const WindowOptions = struct {
     width: i32,
@@ -43,7 +39,6 @@ pub const WindowOptions = struct {
     share: ?*Window = null
 };
 
-/// A Window and its OpenGL Context are Created
 pub fn createWindow(option: WindowOptions) ?*Window {
     const win = glfw.glfwCreateWindow(
         option.width,
@@ -63,8 +58,6 @@ pub const WindowLimits = struct {
     max_height: i32 = -1
 };
 
-/// # Content Area Limits of a Windowed Mode
-/// - Use `-1` if you don't care about a `min` and / or `max` limit
 pub fn setWindowSizeLimits(win: ?*Window, limits: WindowLimits) void {
     glfw.glfwSetWindowSizeLimits(
         @ptrCast(win),
@@ -81,13 +74,11 @@ pub fn setWindowIcon(win: ?*Window, count: i32, images: [*]const Image) void {
     glfw.glfwSetWindowIcon(@ptrCast(win), count, @ptrCast(images));
 }
 
-/// # Checks the Close Flag of the Specified Window
 pub fn windowShouldClose(win: ?*Window) bool {
     const rv = glfw.glfwWindowShouldClose(@ptrCast(win));
     return if (rv == 1) true else false;
 }
 
-/// # Destroys the Specified Window and its Context
 pub fn destroyWindow(win: ?*Window) void {
     glfw.glfwDestroyWindow(@ptrCast(win));
 }
@@ -96,23 +87,11 @@ pub fn makeContextCurrent(win: ?*Window) void {
     glfw.glfwMakeContextCurrent(@ptrCast(win));
 }
 
-/// # Swaps the Front and Back Buffers of the Specified Window
-pub fn swapBuffers(win: ?*Window) void {
-    glfw.glfwSwapBuffers(@ptrCast(win));
-}
+pub fn swapBuffers(win: ?*Window) void { glfw.glfwSwapBuffers(@ptrCast(win)); }
 
-/// # Processes All Pending Events in the Event Queue
-pub fn pollEvents() void {
-    glfw.glfwPollEvents();
-}
+pub fn pollEvents() void { glfw.glfwPollEvents(); }
 
-pub fn swapInterval(count: i32) void {
-    glfw.glfwSwapInterval(@intCast(count));
-}
-
-pub fn x() void {
-    glfw.glfwWindowHint(glfw.GLFW_CLIENT_API, glfw.GLFW_NO_API);
-}
+pub fn swapInterval(count: i32) void { glfw.glfwSwapInterval(@intCast(count)); }
 
 pub fn errorCallback(@"fn": ErrorCallBack) ErrorCallBack {
     return glfw.glfwSetErrorCallback(@"fn");
