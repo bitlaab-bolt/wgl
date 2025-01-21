@@ -2,44 +2,60 @@
 
 Make sure to checkout code comments for additional details.
 
-## libspng
+## glfw
 
-[libspng](https://github.com/randy408/libspng/) (simple png) is a C library for reading and writing Portable Network Graphics (PNG) format files with a focus on security and ease of use.
+[glfw](https://github.com/glfw/glfw) A multi-platform library for OpenGL, OpenGL ES, Vulkan, window and input.
 
-**Limes exposes underlying `libspng` APIs to `lime.Api.spng`.**
+**Wgl exposes underlying `glfw` APIs to `wgl.Api.glfw`.**
 
-### New Context
+### Initializes the GLFW library
 
-`spng.ctxNew()` maps to `spng_ctx_new()` in libspng.
+`glfw.init()` maps to `glfw.glfwInit()` in glfw.
 
-### Free Context
+### Destroys GLFW library
 
-`spng.ctxFree()` maps to `spng_ctx_free()` in libspng.
+`glfw.terminate()` maps to `glfw.glfwTerminate()` in glfw.
 
-### Error Message
+### Processes All Pending Events in the Event Queue
 
-`spng.strError()` maps to `spng_strerror()` in libspng.
+`glfw.pollEvents()` maps to `glfw.glfwPollEvents()` in glfw.
 
-### Open File
+### Creates Cross-Platform Window Instance
 
-`spng.open()` maps to `fopen()`.
+`glfw.createWindow()` maps to `glfw.glfwCreateWindow()` in glfw.
 
-### Close File
+### Sets the Content Area Limits of a Window
 
-`spng.close()` maps to `fclose()`.
+`glfw.setWindowSizeLimits()` maps to `glfw.glfwSetWindowSizeLimits()` in glfw.
 
-### Set Png File
+### Checks the Close Flag of the Specified Window
 
-`spng.setPngFile()` maps to `spng_set_png_file()` in libspng.
+`glfw.windowShouldClose()` maps to `glfw.glfwWindowShouldClose()` in glfw.
 
-### Get Header Info
+### Destroys the Specified Window and Its Context
 
-`spng.getIhdr()` maps to `spng_get_ihdr()` in libspng.
+`glfw.destroyWindow()` maps to `glfw.glfwDestroyWindow()` in glfw.
 
-### Decode Image Size
+### Makes Window Context Current on the Calling Thread
 
-`spng.decodeImageSize()` maps to `spng_decoded_image_size()` in libspng.
+`glfw.makeContextCurrent()` maps to `glfw.glfwMakeContextCurrent()` in glfw.
 
-### Decode Image
+### Swaps the Front and Back Buffers of the Specified Window
 
-`spng.decodeImage()` maps to `spng_decode_image()` in libspng.
+`glfw.swapBuffers()` maps to `glfw.glfwSwapBuffers()` in glfw.
+
+### Sets Swap Interval for the Current OpenGL Context
+
+`glfw.swapInterval()` maps to `glfw.glfwSwapInterval()` in glfw.
+
+### Sets the Error Callback Function
+
+`glfw.errorCallback()` maps to `glfw.glfwSetErrorCallback()` in glfw.
+
+### Gets `NSWindow` of the Specified Window
+
+`glfw.getCocoaWindow()` maps to `glfw.glfwGetCocoaWindow()` in glfw.
+
+### Gets `HWND` of the Specified Window
+
+`glfw.getWin32Window()` maps to `glfw.glfwGetWin32Window()` in glfw.

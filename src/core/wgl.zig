@@ -24,7 +24,7 @@ pub fn createWindow(option: glfw.WindowOptions) !Self {
     return .{.instance = glfw.createWindow(option)};
 }
 
-/// # Sets the Content Area Limits of a Windowed
+/// # Sets the Content Area Limits of a Window
 /// - Use `-1` if you don't care about a `min` and / or `max` limit
 pub fn setSizeLimits(self: *Self, limits: glfw.WindowLimits) void {
     glfw.setWindowSizeLimits(self.instance, limits);
@@ -83,14 +83,14 @@ pub fn destroy(self: *Self) void {
     glfw.destroyWindow(self.instance);
 }
 
-/// # Swaps the Front and Back Buffers of the Specified Window
-pub fn swapBuffers(self: *Self) void {
-    glfw.swapBuffers(self.instance);
-}
-
 /// # Makes Window Context Current on the Calling Thread
 pub fn makeContextCurrent(self: *Self) void {
     glfw.makeContextCurrent(self.instance);
+}
+
+/// # Swaps the Front and Back Buffers of the Specified Window
+pub fn swapBuffers(self: *Self) void {
+    glfw.swapBuffers(self.instance);
 }
 
 /// # Sets Swap Interval for the Current OpenGL Context

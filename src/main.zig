@@ -15,7 +15,6 @@ pub fn main() !void {
     wgl.swapInterval(10);
     wgl.errorCallback(printErrorInfo);
 
-
     var win = try wgl.createWindow(.{.width = 980, .height = 560});
     defer win.destroy();
 

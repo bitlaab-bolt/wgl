@@ -1,51 +1,41 @@
 # How to use
 
-First import Lime on your zig file.
+First import Wgl on your zig file.
 
 ```zig
-const lime = @import("lime");
+const wgl = @import("wgl").Wgl;
 ```
 
-## PNG Module
+## Window Creation
 
-### Load RAW Image Pixels
+### Creates a Windows Context
 
 ```zig
-var gpa_mem = std.heap.GeneralPurposeAllocator(.{}){};
-defer std.debug.assert(gpa_mem.deinit() == .ok);
-const heap = gpa_mem.allocator();
+try wgl.init();
+defer wgl.deinit();
 
-// Replace "./flash.png" with your targeted image path
-const image = try lime.Png.loadImage(heap, "./flash.png");
-defer lime.Png.freeImage(heap, image.data);
+wgl.swapInterval(10);
+wgl.errorCallback(printErrorInfo);
 
-switch(image) {
-    .err => |v| {
-        std.debug.print("Error: {s}\n", .{v});
-        return error.FailedToLoad;
-    },
-    .data => |v| {
-        // `v` Contains Raw pixel data
-        std.debug.print("Total pixels {d}\n", .{v.len});
-    },
-    .ihdr => unreachable
+var win = try wgl.createWindow(.{.width = 980, .height = 560});
+defer win.destroy();
+
+win.makeContextCurrent();
+win.setSizeLimits(.{.min_width = 720, .min_height = 360});
+
+while (!win.shouldClose()) {
+    // Game loop code here...
+
+    win.swapBuffers();
+    wgl.pullEvents();
 }
 ```
 
-### Load Image Header Info
+### Error Info Callback
 
 ```zig
-// Replace "./flash.png" with your targeted image path
-const ihdr = try lime.Png.loadImageHeader("./flash.png");
-switch(image) {
-    .err => |v| {
-        std.debug.print("Error: {s}\n", .{v});
-        return error.FailedToLoad;
-    },
-    .ihdr => |v| {
-        // `v` Contains IHDR data
-        std.debug.print("Info: {any}\n", .{v});
-    },
-    .data => unreachable
+fn printErrorInfo(code: c_int, message: [*c]const u8) callconv(.c) void {
+    std.debug.print("Error code: {d}\n", .{code});
+    std.debug.print("Error Message: {s}\n", .{message});
 }
 ```
