@@ -68,6 +68,10 @@ pub fn setWindowSizeLimits(win: ?*Window, limits: WindowLimits) void {
     );
 }
 
+pub fn maximizeWindow(win: ?*Window) void {
+    glfw.glfwMaximizeWindow(@ptrCast(win));
+}
+
 pub const Image = extern struct { width: i32, height: i32, pixels: [*]u8 };
 
 pub fn setWindowIcon(win: ?*Window, count: i32, images: [*]const Image) void {

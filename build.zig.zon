@@ -1,6 +1,7 @@
 .{
-    .name = "wgl",
+    .name = .wgl,
     .version = "0.1.0",
+    .fingerprint = 0xc04777d43677a1a4,
     .dependencies = .{},
     .paths = .{
         "docs",

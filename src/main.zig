@@ -20,6 +20,7 @@ pub fn main() !void {
 
     win.makeContextCurrent();
     win.setSizeLimits(.{.min_width = 720, .min_height = 360});
+    // win.maximizeWindow();
 
     // Native window handler
     const native_win: *anyopaque = switch (builtin.os.tag) {

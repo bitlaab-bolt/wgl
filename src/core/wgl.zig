@@ -30,6 +30,11 @@ pub fn setSizeLimits(self: *Self, limits: glfw.WindowLimits) void {
     glfw.setWindowSizeLimits(self.instance, limits);
 }
 
+/// # Maximizes the Specified Window
+pub fn maximizeWindow(self: *Self) void {
+    glfw.maximizeWindow(self.instance);
+}
+
 pub const Image = glfw.Image;
 
 /// Does not shows on macos
