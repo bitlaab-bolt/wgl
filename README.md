@@ -12,11 +12,11 @@ As of now, Wgl supports **Windows** (x64) and **MacOS** (Apple silicon). Please 
 
 ### MacOS
 
-All of Wgl's dependencies are linked as static libraries. No additional steps are required!
+All dependencies are linked as static libraries. No additional steps are required!
 
 ### Windows
 
-On Windows, `glfw3.dll` is required on the final executable. You will find the necessary steps in the Installation section in the documentation.
+The final executable requires `glfw3.dll`. The necessary steps are in the documentation's **Installation** section.
 
 ## Documentation
 
