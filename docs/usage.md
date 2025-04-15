@@ -1,9 +1,10 @@
 # How to use
 
-First import Wgl on your zig file.
+First, import Wgl into your Zig source file.
 
 ```zig
-const wgl = @import("wgl").Wgl;
+const wgl = @import("wgl");
+const Wgl = wgl.Wgl;
 ```
 
 ## Window Creation
@@ -11,13 +12,13 @@ const wgl = @import("wgl").Wgl;
 ### Creates a Windows Context
 
 ```zig
-try wgl.init();
-defer wgl.deinit();
+try Wgl.init();
+defer Wgl.deinit();
 
-wgl.swapInterval(10);
-wgl.errorCallback(printErrorInfo);
+Wgl.swapInterval(10);
+Wgl.errorCallback(printErrorInfo);
 
-var win = try wgl.createWindow(.{.width = 980, .height = 560});
+var win = try Wgl.createWindow(.{.width = 980, .height = 560});
 defer win.destroy();
 
 win.makeContextCurrent();
@@ -27,7 +28,7 @@ while (!win.shouldClose()) {
     // Game loop code here...
 
     win.swapBuffers();
-    wgl.pullEvents();
+    Wgl.pullEvents();
 }
 ```
 

@@ -3,10 +3,27 @@
 All notable changes to this project will be documented in this file.
 This project adheres to the [Semantic Version](https://semver.org/) guideline.
 
-## [v0.1.0] - 2025-01-21
+## [Version] - yyyy-mm-dd
 
-Supports both Windows (x64) and MacOS (Apple Silicon).
+Here we write upgrading notes and make them as straightforward as possible.
 
 ### Added
+- A short description for added item 1
+- A short description for added item 2
+- A short description for added item n
 
-- Bare bone implementations with partial API binding (code coverage).
+### Changed
+- A short description for changed item 1
+- A short description for changed item 2
+- A short description for changed item n
+
+### Fixed
+- A short description for fixed item 1
+- A short description for fixed item 2
+- A short description for fixed item n
+
+
+## [v0.5.0] - 2025-04-15
+
+Provides bare minimum window creation and management capabilities for Windows (x64) and MacOS (Apple Silicon).
+

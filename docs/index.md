@@ -1,6 +1,6 @@
 # Getting Started
 
-**Window graphics library bindings for Zig.**
+**Window Graphics Library Bindings for Zig**
 
 Wgl is intended to be a high-level abstraction for cross-platform window creation and management. Along with abstraction, Wgl exposes underlying API bindings for more custom-tailored functionality.
 

@@ -72,12 +72,6 @@ pub fn maximizeWindow(win: ?*Window) void {
     glfw.glfwMaximizeWindow(@ptrCast(win));
 }
 
-pub const Image = extern struct { width: i32, height: i32, pixels: [*]u8 };
-
-pub fn setWindowIcon(win: ?*Window, count: i32, images: [*]const Image) void {
-    glfw.glfwSetWindowIcon(@ptrCast(win), count, @ptrCast(images));
-}
-
 pub fn windowShouldClose(win: ?*Window) bool {
     const rv = glfw.glfwWindowShouldClose(@ptrCast(win));
     return if (rv == 1) true else false;

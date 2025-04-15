@@ -1,7 +1,8 @@
 .{
     .name = .wgl,
-    .version = "0.1.0",
+    .version = "0.5.0",
     .fingerprint = 0xc04777d43677a1a4,
+    .minimum_zig_version = "0.15.0-dev.337+4e700fdf8",
     .dependencies = .{},
     .paths = .{
         "docs",

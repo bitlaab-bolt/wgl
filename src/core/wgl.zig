@@ -4,8 +4,6 @@ const Allocator = std.mem.Allocator;
 const glfw = @import("../binding/glfw.zig");
 
 
-const Error = error { FailedToLoadImage };
-
 instance: ?*glfw.Window,
 
 const Self = @This();
@@ -35,49 +33,6 @@ pub fn maximizeWindow(self: *Self) void {
     glfw.maximizeWindow(self.instance);
 }
 
-pub const Image = glfw.Image;
-
-/// Does not shows on macos
-pub fn setWindowIcon(self: *Self, heap: Allocator, path: []const u8) !void {
-    _ = self;
-    _ = heap;
-    _ = path;
-
-    // TODO:
-    // const image = try lime.Png.loadImage(heap, path);
-    // switch(image) {
-    //     .err => |v| {
-    //         std.log.err("Error: {s}\n", .{v});
-    //         return Error.FailedToLoadImage;
-    //     },
-    //     .data => |v| {
-    //         errdefer lime.Png.freeImage(heap, v);
-    //         const ihdr = try lime.Png.loadImageHeader(path);
-    //         switch (ihdr) {
-    //             .err => |w| {
-    //                 std.log.err("Error: {s}\n", .{w});
-    //                 return Error.FailedToLoadImage;
-    //             },
-    //             .ihdr => |w| {
-    //                 var img: [1]Image = undefined;
-    //                 img[0] = Image {
-    //                     .width = @intCast(w.width),
-    //                     .height = @intCast(w.height),
-    //                     .pixels = @constCast(v.ptr)
-    //                 };
-
-    //                 const count = v.len;
-    //                 glfw.setWindowIcon(self.instance, @intCast(count), &img);
-    //             },
-    //             .data => unreachable
-    //         }
-    //     },
-    //     .ihdr => unreachable
-    // }
-
-    // lime.Png.freeImage(heap, image.data);
-}
-
 /// # Checks the Close Flag of the Specified Window
 pub fn shouldClose(self: *Self) bool {
     return glfw.windowShouldClose(self.instance);
@@ -99,11 +54,11 @@ pub fn swapBuffers(self: *Self) void {
 }
 
 /// # Sets Swap Interval for the Current OpenGL Context
-/// - A.K.A - vertical retrace synchronization or vsync
+/// **A.K.A** - vertical retrace synchronization or vsync.
 pub fn swapInterval(count: i32) void { glfw.swapInterval(count); }
 
 /// # Sets the Error Callback Function
-/// - Shows error code and a human-readable description when error occurs
+/// Shows error code and a human-readable description when error occurs
 pub fn errorCallback(@"fn": glfw.ErrorCallBack) void {
     _ = glfw.errorCallback(@"fn");
 }
