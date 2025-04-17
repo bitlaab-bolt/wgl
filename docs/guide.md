@@ -16,4 +16,4 @@ To generate Zig's API documentation, navigate to your project directory and run:
 zig build-lib -femit-docs=docs/zig-docs src/root.zig
 ```
 
-Now, clean up any unwanted generated file and make sure to link `zig-docs/index.html` to your `reference.md` file.
+Now, clean up any unwanted generated files and make sure to link `zig-docs/index.html` to your `reference.md` file.
