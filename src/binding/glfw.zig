@@ -1,20 +1,7 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
-const glfw = @cImport({
-    switch (builtin.target.os.tag) {
-        .macos => @cDefine("GLFW_EXPOSE_NATIVE_COCOA", "1"),
-        .windows => {
-            @cDefine("GLFW_EXPOSE_NATIVE_WIN32", "1");
-            @cDefine("struct_DECLSPEC_UUID", "struct");
-        },
-        else => @panic("Codebase is not tailored for this platform!")
-    }
-
-    @cDefine("GLFWAPI", "__attribute__((visibility(\"default\")))");
-    @cInclude("glfw3.h");
-    @cInclude("glfw3native.h");
-});
+pub const glfw = @import("glfw");
 
 
 const Error = error { InitializationFailed };

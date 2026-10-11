@@ -6,6 +6,30 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    // C header translation (replaces the @cImport block)
+    const translate_c = b.addTranslateC(.{
+        .root_source_file = b.path("libs/src/glfw.h"),
+        .target = target,
+        .optimize = optimize,
+        .link_libc = true,
+    });
+    translate_c.addIncludePath(b.path("libs/include"));
+    translate_c.defineCMacro(
+        "GLFWAPI",
+        "__attribute__((visibility(\"default\")))"
+    );
+
+    switch (target.query.os_tag orelse builtin.os.tag) {
+        .macos => {
+            translate_c.defineCMacro("GLFW_EXPOSE_NATIVE_COCOA", "1");
+        },
+        .windows => {
+            translate_c.defineCMacro("GLFW_EXPOSE_NATIVE_WIN32", "1");
+            translate_c.defineCMacro("struct_DECLSPEC_UUID", "struct");
+        },
+        else => @panic("Codebase is not tailored for this platform!"),
+    }
+
     // Exposing as a dependency for other projects
     const pkg = b.addModule("wgl", .{
         .root_source_file = b.path("src/root.zig"),
@@ -14,6 +38,8 @@ pub fn build(b: *std.Build) void {
     });
 
     pkg.addIncludePath(b.path("libs/include"));
+
+    pkg.addImport("glfw", translate_c.createModule());
 
     const main = b.addModule("main", .{
         .root_source_file = b.path("src/main.zig"),
