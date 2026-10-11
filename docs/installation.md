@@ -35,6 +35,6 @@ lib.root_module.addImport("wgl", wgl.module("wgl"));
 
 When you're targeting the Windows platform:
 
-For nightly version download [glfw3.dll](https://github.com/bitlaab-bolt/wgl/blob/main/libs/windows/glfw3.dll) and put this in your final executable's installation directory.
+For nightly version download [glfw3.dll](https://github.com/bitlaab-bolt/wgl/blob/main/libs/windows/glfw3.dll) and put this in your final executables installation directory.
 
 For the release version, download `glfw.dll` from the attachment section of the Release Tag.

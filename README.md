@@ -1,12 +1,12 @@
 # wgl
 
-**Window Graphics Library Bindings for Zig**
+**Cross-Platform Window Library for Zig**
 
-Wgl is intended to be a high-level abstraction for cross-platform window creation and management. Along with abstraction, Wgl exposes underlying API bindings for more custom-tailored functionality.
+Wgl is a cross-platform window creation and management library. It provides a high-level API that unifies windowing across operating systems, along with direct access to the underlying API bindings for developers who need custom, lower-level control.
 
 ## Platform Support
 
-As of now, Wgl supports **Windows** (x64) and **MacOS** (Apple silicon). Please create an issue if you need other platform support for your use case.
+Supports **Windows** (x64) and **MacOS** (Apple silicon). Please create an issue if you need other platform support for your use case.
 
 ## Dependency
 
@@ -20,4 +20,4 @@ The final executable requires `glfw3.dll`. The necessary steps are in the docume
 
 ## Documentation
 
-For most up-to-date documentation see - [**Wgl Documentation**](https://bitlaabwgl.web.app/).
+For most up-to-date documentation see - [**Wgl Documentation**](https://bitlaab.com/api-doc?pkg=wgl).

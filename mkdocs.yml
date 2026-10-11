@@ -1,5 +1,5 @@
-site_name: wgl v0.5.0
-site_url: http://127.0.0.1
+site_name: wgl v1.0.0
+site_url: http://0.0.0.0:8001
 nav:
   - Getting Started: index.md
   - How to Install: installation.md
@@ -15,8 +15,8 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
 theme:
-  logo: assets/bitlaab/logo.png
-  favicon: assets/bitlaab/favicon.png
+  logo: asset/bitlaab/logo.png
+  favicon: asset/bitlaab/favicon.png
   homepage: https://bitlaab.com
   name: material
   features:
@@ -47,4 +47,4 @@ extra:
       link: https://www.linkedin.com/company/bitlaab
     - icon: fontawesome/brands/github
       link: https://github.com/bitlaab-bolt
-copyright: Copyright © 2025 bitlaab™
+copyright: Copyright © 2026 bitlaab™

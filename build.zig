@@ -29,21 +29,23 @@ pub fn build(b: *std.Build) void {
     // Adding cross-platform dependency
     switch (target.query.os_tag orelse builtin.os.tag) {
         .windows => {
-            exe.linkLibC();
+            exe.root_module.link_libc = true;
 
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .x86_64 => {
                     pkg.addObjectFile(b.path("libs/windows/glfw3dll.lib"));
                     pkg.linkSystemLibrary("gdi32", .{});
 
-                    exe.addObjectFile(b.path("libs/windows/glfw3dll.lib"));
-                    exe.linkSystemLibrary("gdi32");
+                    exe.root_module.addObjectFile(
+                        b.path("libs/windows/glfw3dll.lib")
+                    );
+                    exe.root_module.linkSystemLibrary("gdi32", .{});
                 },
                 else => @panic("Unsupported architecture!")
             }
         },
         .macos => {
-            exe.linkLibCpp();
+            exe.root_module.link_libcpp = true;
 
             switch (target.query.cpu_arch orelse builtin.cpu.arch) {
                 .aarch64 => {
@@ -51,9 +53,11 @@ pub fn build(b: *std.Build) void {
                     pkg.linkFramework("IOKit", .{});
                     pkg.linkFramework("Cocoa", .{});
 
-                    exe.addObjectFile(b.path("libs/macOS/libglfw3.a"));
-                    exe.linkFramework("IOKit");
-                    exe.linkFramework("Cocoa");
+                    exe.root_module.addObjectFile(
+                        b.path("libs/macOS/libglfw3.a")
+                    );
+                    exe.root_module.linkFramework("IOKit", .{});
+                    exe.root_module.linkFramework("Cocoa", .{});
                 },
                 else => @panic("Unsupported architecture!")
             }

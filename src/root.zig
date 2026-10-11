@@ -1,5 +1,5 @@
 //! # GLFW3 Library Binding
-//! - See documentation at - https://bitlaabwgl.web.app/
+//! - See documentation at - https://bitlaab.com/api-doc?pkg=wgl
 
 pub const Wgl = @import("./core/wgl.zig");
 
