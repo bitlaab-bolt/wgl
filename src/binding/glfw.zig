@@ -9,7 +9,7 @@ const Error = error { InitializationFailed };
 pub const ErrorCallBack = glfw.GLFWerrorfun;
 
 pub const Window = opaque {};
-const Monitor = opaque {};
+pub const Monitor = opaque {};
 
 pub fn init() Error!void {
     const rv = glfw.glfwInit();
@@ -21,7 +21,7 @@ pub fn terminate() void { glfw.glfwTerminate(); }
 pub const WindowOptions = struct {
     width: i32,
     height: i32,
-    title: []const u8 = "",
+    title: [:0]const u8 = "",
     monitor: ?*Monitor = null,
     share: ?*Window = null
 };
@@ -39,8 +39,8 @@ pub fn createWindow(option: WindowOptions) ?*Window {
 }
 
 pub const WindowLimits = struct {
-    min_width: i32,
-    min_height: i32,
+    min_width: i32 = -1,
+    min_height: i32 = -1,
     max_width: i32 = -1,
     max_height: i32 = -1
 };
@@ -76,7 +76,11 @@ pub fn swapBuffers(win: ?*Window) void { glfw.glfwSwapBuffers(@ptrCast(win)); }
 
 pub fn pollEvents() void { glfw.glfwPollEvents(); }
 
-pub fn swapInterval(count: i32) void { glfw.glfwSwapInterval(@intCast(count)); }
+pub fn getPrimaryMonitor() ?*Monitor {
+    return @ptrCast(glfw.glfwGetPrimaryMonitor());
+}
+
+pub fn swapInterval(count: i32) void { glfw.glfwSwapInterval(count); }
 
 pub fn errorCallback(@"fn": ErrorCallBack) ErrorCallBack {
     return glfw.glfwSetErrorCallback(@"fn");

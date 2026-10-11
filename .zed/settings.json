@@ -6,10 +6,10 @@
     "lsp": {
         "zls": {
             "binary": {
-                "path": "/home/al-mehedi/zls-0.17.0/zig-out/bin/zls"
+                "path": "/Users/al-mehedi/Public/zls-0.17.0/zig-out/bin/zls"
             },
             "initialization_options": {
-                "zig_exe_path": "/home/al-mehedi/zig-0.17.0/zig"
+                "zig_exe_path": "/Users/al-mehedi/Public/zig-0.17.0/zig"
             }
         }
     }
