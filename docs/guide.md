@@ -6,7 +6,11 @@ If you are using previous release of Wgl for some reason, you can generate docum
 
 - Download and extract `Source code (zip)` for your target release at [**Wgl Repo**](https://github.com/bitlaab-bolt/wgl)
 
-- Now, `cd` into your release directory and run: `mkdocs serve`
+- Now, `cd` into your release directory and run:
+
+```sh
+mkdocs serve --dev-addr=0.0.0.0:8001
+```
 
 ## Generate Code Documentation
 

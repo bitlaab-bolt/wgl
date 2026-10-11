@@ -8,5 +8,5 @@ The underlying API bindings are implemented on a need-per-basis. If you need oth
 
 <!-- Buy Us Coffee -->
 <a href="https://www.buymeacoffee.com/bitlaab" target="_blank">
-    <img src="assets/bitlaab/coffee-btn.svg" alt="Buy Us Coffee">
+    <img src="asset/bitlaab/coffee-btn.svg" alt="Buy Us Coffee">
 </a>

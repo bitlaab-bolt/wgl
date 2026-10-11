@@ -1,6 +1,4 @@
-const std = @import("std");
 const builtin = @import("builtin");
-const Allocator = std.mem.Allocator;
 
 const glfw = @import("../binding/glfw.zig");
 
@@ -16,7 +14,7 @@ pub fn init() !void { try glfw.init(); }
 pub fn deinit() void { glfw.terminate(); }
 
 /// # Processes All Pending Events in the Event Queue
-pub fn pullEvents() void { glfw.pollEvents(); }
+pub inline fn pullEvents() void { glfw.pollEvents(); }
 
 /// # Creates Cross-Platform Window Instance
 /// - Returns `error.WindowCreationFailed` if the underlying GLFW call fails
@@ -37,7 +35,7 @@ pub fn maximizeWindow(self: *Self) void {
 }
 
 /// # Checks the Close Flag of the Specified Window
-pub fn shouldClose(self: *Self) bool {
+pub inline fn shouldClose(self: *Self) bool {
     return glfw.windowShouldClose(self.instance);
 }
 
@@ -54,13 +52,13 @@ pub fn makeContextCurrent(self: *Self) void {
 }
 
 /// # Swaps the Front and Back Buffers of the Specified Window
-pub fn swapBuffers(self: *Self) void {
+pub inline fn swapBuffers(self: *Self) void {
     glfw.swapBuffers(self.instance);
 }
 
 /// # Sets Swap Interval for the Current OpenGL Context
 /// **A.K.A** - vertical retrace synchronization or vsync.
-pub fn swapInterval(count: i32) void { glfw.swapInterval(count); }
+pub inline fn swapInterval(count: i32) void { glfw.swapInterval(count); }
 
 /// # Sets the Error Callback Function
 /// Shows error code and a human-readable description when error occurs

@@ -61,7 +61,7 @@ pub fn maximizeWindow(win: ?*Window) void {
 
 pub fn windowShouldClose(win: ?*Window) bool {
     const rv = glfw.glfwWindowShouldClose(@ptrCast(win));
-    return if (rv == 1) true else false;
+    return rv != 0;
 }
 
 pub fn destroyWindow(win: ?*Window) void {
@@ -72,15 +72,15 @@ pub fn makeContextCurrent(win: ?*Window) void {
     glfw.glfwMakeContextCurrent(@ptrCast(win));
 }
 
-pub fn swapBuffers(win: ?*Window) void { glfw.glfwSwapBuffers(@ptrCast(win)); }
+pub inline fn swapBuffers(win: ?*Window) void { glfw.glfwSwapBuffers(@ptrCast(win)); }
 
-pub fn pollEvents() void { glfw.glfwPollEvents(); }
+pub inline fn pollEvents() void { glfw.glfwPollEvents(); }
 
 pub fn getPrimaryMonitor() ?*Monitor {
     return @ptrCast(glfw.glfwGetPrimaryMonitor());
 }
 
-pub fn swapInterval(count: i32) void { glfw.glfwSwapInterval(count); }
+pub inline fn swapInterval(count: i32) void { glfw.glfwSwapInterval(count); }
 
 pub fn errorCallback(@"fn": ErrorCallBack) ErrorCallBack {
     return glfw.glfwSetErrorCallback(@"fn");
