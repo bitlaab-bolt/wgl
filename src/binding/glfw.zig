@@ -1,5 +1,3 @@
-const std = @import("std");
-const builtin = @import("builtin");
 
 pub const glfw = @import("glfw");
 
